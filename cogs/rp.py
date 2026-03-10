@@ -9,14 +9,12 @@ class RP(commands.Cog):
     @commands.command()
     async def registrar(self, ctx, nome, idade:int):
 
-        cargo = discord.utils.get(ctx.guild.roles, name="Cidadão")
+        role = discord.utils.get(ctx.guild.roles, name="Cidadão")
 
-        if cargo:
-            await ctx.author.add_roles(cargo)
+        if role:
+            await ctx.author.add_roles(role)
 
-        await ctx.send(
-            f"✅ Registro criado!\nNome: {nome}\nIdade: {idade}"
-        )
+        await ctx.send(f"Registro criado: {nome}, {idade} anos.")
 
-def setup(bot):
-    bot.add_cog(RP(bot))
+async def setup(bot):
+    await bot.add_cog(RP(bot))
